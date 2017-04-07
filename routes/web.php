@@ -14,3 +14,7 @@
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/', 'HomeController@index');
+
+Route::group(['middleware' => 'auth', 'as' => 'admin.', 'prefix' => 'admin'], function(){
+    Route::resource('events', 'Admin\EventsController');
+});
